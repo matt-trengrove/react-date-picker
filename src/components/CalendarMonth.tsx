@@ -6,6 +6,7 @@ import { CalendarWeek } from './CalendarWeek';
 
 export interface Props {
   month: Moment;
+  showDaysOutsideMonth: boolean;
 }
 
 export const CalendarMonth: FC<Props> = (props: Props) => {
@@ -19,7 +20,14 @@ export const CalendarMonth: FC<Props> = (props: Props) => {
         </tr>
       </thead>
       <tbody>
-        {weeksInMonth.map((week, idx) => <CalendarWeek key={idx} week={week} />)}
+        {weeksInMonth.map((week, idx) =>
+          <CalendarWeek 
+            key={idx}
+            week={week}
+            month={props.month.month()}
+            showDaysOutsideMonth={props.showDaysOutsideMonth}
+          />
+        )}
       </tbody>
     </table>
   );
